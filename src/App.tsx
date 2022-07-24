@@ -136,7 +136,7 @@ function App() {
     <div className="App">
       <Box sx={{display: 'flex'}}>
         {drinks.map((drink: IDrink) => (
-          <Button onClick={() => addOrder(drink.id)}>
+          <Button key={drink.id} onClick={() => addOrder(drink.id)}>
             <img src={drink.icon} style={{width: 64}}/>
             <Typography sx={{ml: 2}}>{drink.name}</Typography>
           </Button>
