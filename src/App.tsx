@@ -23,7 +23,7 @@ import {
 } from "firebase/firestore";
 
 import OrderList from './OrderList';
-import {Box, Button, Container, Typography} from '@mui/material';
+import {Box, Button, Card, CardContent, CardMedia, Container, Typography} from '@mui/material';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -133,16 +133,23 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Box sx={{display: 'flex'}}>
-        {drinks.map((drink: IDrink) => (
-          <Button key={drink.id} onClick={() => addOrder(drink.id)}>
-            <img src={drink.icon} style={{width: 64}}/>
-            <Typography sx={{ml: 2}}>{drink.name}</Typography>
-          </Button>
-        ))}
-      </Box>
+    <div className="App" style={{backgroundColor: '#eee'}}>
       <Container maxWidth="md">
+
+        <Box sx={{display: 'flex', flexWrap: 'wrap', pt: 2}}>
+          {drinks.map((drink: IDrink) => (
+            <Card key={drink.id} onClick={() => addOrder(drink.id)} sx={{mr: 2, mb: 2, cursor: 'pointer'}}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={drink.icon}
+              />
+              <CardContent>
+                <Typography sx={{ml: 2}}>{drink.name}</Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
         <OrderList orders={orders} handleToggle={handleToggle}/>
       </Container>
     </div>
